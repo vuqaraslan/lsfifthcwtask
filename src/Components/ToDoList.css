@@ -1,0 +1,68 @@
+*{
+    user-select: none;
+}
+
+.base-section{
+    width: 300px;
+    border: 2px solid black;
+    margin: auto;
+}
+
+.todoList-section{
+    background-color: lightgray;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.todo-section{
+    border:2px solid blue;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.todo-section>*{
+    display: inline-block;
+    margin: auto;
+}
+
+.todo-section>h1{
+    width: 70%;
+    font-size: 1.5em;
+    padding-top: 5px;
+    padding-bottom: 6px;
+}
+
+.remove-btn{
+    border-radius:50%;
+    font-size: 1.5em;
+    background-color: red;
+    color: white;
+    width: 30px;
+    height: 100%;
+}
+
+.finished-btn{
+    border-radius:50%;
+    font-size: 1.5em;
+    width: 30px;
+    height: 100%;
+    background-color: green;
+    color: white;
+}
+
+.confirmation-operation{
+    border: 2px solid black;
+    padding:5px;
+    font-size: 0.7em;
+    width: 70%;
+    margin: auto;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    border-radius: 20px;
+    /* display: block; */
+}
+
+.confirmation-operation>button{
+    border-radius: 50%;
+    color: white;
+}
