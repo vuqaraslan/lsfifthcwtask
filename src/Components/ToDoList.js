@@ -1,18 +1,23 @@
 import React, { useRef, useState } from 'react'
 import './ToDoList.css'
+import ToDo from './ToDo';
 
 export default function ToDoList() {
 
   const [todoName,setToDoName]=useState('');
   const [toDoList,setToDoList]=useState([]);
-  const [isClicked,setIsClicked]=useState(false);
+  
   let id=0;
 
   function handleAddClick(){
     if(todoName.trim()!==''){
       setToDoList([
         ...toDoList,
-        todoName
+        {
+            id:id++,
+            todoName:todoName,
+            isDone:isClicked
+        }
       ]);
       setToDoName('');
       console.log(id);
@@ -24,8 +29,20 @@ export default function ToDoList() {
     setToDoList(newList);
   }
 
-  function handleConfirmClick(){
+  const [isClicked,setIsClicked]=useState(false);
+
+  function handleConfirmClick(id){
+
     setIsClicked(!isClicked);
+    console.log('isClicked >> '+isClicked);
+    console.log('isClicked with isDone >> '+toDoList.find((td)=>td.id===id).isDone);
+    toDoList.forEach((td)=>{
+        if(td.id===id){
+            td.isDone=isClicked
+            console.log('in foreach >> '+td.isDone);
+        }
+    });
+
   }
 
   return (
@@ -37,13 +54,9 @@ export default function ToDoList() {
       <section className='todoList-section'>
         {
           toDoList.map((todo,index)=>(
-            <section className='todo-section' key={id+=1} onClick={()=>{handleConfirmClick()}}>
-              {isClicked && <button className='finished-btn'>v</button>}
-              {isClicked ? <h1><s>{todo}</s></h1> : <h1>{todo}</h1> }
-              <button className='remove-btn' onClick={()=>{
-                handleRemoveClick(index);
-              }}>x</button>
-              </section>
+              <ToDo todo={todo} index={index} id={id+=1} toDoList={toDoList} handleRemoveClick={handleRemoveClick}
+                handleConfirmClick={handleConfirmClick}
+              ></ToDo>
           ))
         }
       </section>
